@@ -1,0 +1,72 @@
+using Microsoft.EntityFrameworkCore;
+using ERP_BACKEND.data;
+using ERP_BACKEND.interfaces;
+using ERP_BACKEND.services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+
+var builder = WebApplication.CreateBuilder(args);
+
+
+
+// Add services to the container.
+
+builder.Services.AddControllers();
+// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+builder.Services.AddOpenApi();
+
+
+builder.Services.AddScoped<IAsset, AssetService>();
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+// 2. Register AppDbContext with the DI Container
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(connectionString));
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options=>
+{
+   options.RequireHttpsMetadata = false;
+   options.SaveToken =  true;
+   options.TokenValidationParameters =  new TokenValidationParameters
+   {
+       ValidIssuer = builder.Configuration["JwtConfiguration:Issuer"],
+       ValidAudience = builder.Configuration["JwtConfiguration:Audience"],
+       IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtConfiguration:Key"]!)),
+       ValidateIssuer =  true,
+       ValidateAudience = true,
+       ValidateLifetime = true,
+       ValidateIssuerSigningKey = true
+       
+       
+       
+   };
+
+});
+builder.Services.AddAuthorization();
+
+var app = builder.Build();
+
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi();
+}
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
+
+app.UseAuthorization();
+app.UseAuthentication();
+
+app.MapControllers();
+
+app.Run();
