@@ -6,6 +6,8 @@ public class Asset
     public int? TURBINE_ID { get; set; }
     public int? CATEGORY_ID { get; set; }
     public int? STORE_ID { get; set; }
+
+    public int? RACK_ID {get; set;}
     public string? ITEM_NAME { get; set; } 
     public string? DESCRIPTION { get; set; }
    

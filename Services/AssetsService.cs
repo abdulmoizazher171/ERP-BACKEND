@@ -30,11 +30,25 @@ public class AssetService : IAsset
             .FirstOrDefaultAsync(a => a.ITEM_ID == id);
     }
 
-    public async Task<Asset> AddAssetAsync(Asset asset)
+    public async Task<Asset> AddAssetAsync(AssetCreateDto dto)
     {
-        _context.Assets.Add(asset);
+        var newasset = new Asset
+        {
+            ITEM_NAME =  dto.ItemName,
+            TURBINE_ID =  dto.TurbineId,
+            STORE_ID = dto.StoreId,
+            RACK_ID =  dto.rackid,
+            DESCRIPTION = dto.Description,
+            CATEGORY_ID = dto.CategoryId,
+
+            
+            
+
+            
+        };
+        _context.Assets.Add(newasset);
         await _context.SaveChangesAsync();
-        return asset;
+        return newasset;
     }
 
     // ... other methods follow the same pattern

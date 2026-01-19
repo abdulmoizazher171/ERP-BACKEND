@@ -5,7 +5,7 @@ int ItemId,
 string ItemName,
 string CategoryName,
 int? SystemNumber,
-string StoreName,
+int StoreName,
 List<string> AttachmentUrls
 );
 
@@ -14,5 +14,6 @@ public record AssetCreateDto(
     int CategoryId,
     int TurbineId,
     int StoreId,
+    int rackid,
     string Description
 );

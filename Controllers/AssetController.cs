@@ -16,7 +16,7 @@ public class AssetsController : Controller
 
     private readonly IAsset _IAsset;
 
-    private AssetsController(IAsset asset)
+    public AssetsController(IAsset asset)
     {
         _IAsset = asset;
     }
@@ -27,5 +27,16 @@ public class AssetsController : Controller
         var result = await _IAsset.GetAllAssetsAsync();
         return Ok(result);
        
+    }
+
+    [HttpPost("crete")]
+
+    public async Task<IActionResult> create(AssetCreateDto dto)
+    {
+        
+        var result = await _IAsset.AddAssetAsync(dto);
+        return (IActionResult)result;
+
+
     }
 }

@@ -1,5 +1,5 @@
 namespace ERP_BACKEND.interfaces;
-
+using ERP_BACKEND.dtos;
 
 using ERP_BACKEND.constracts;
 
@@ -13,7 +13,7 @@ using ERP_BACKEND.constracts;
         Task<Asset?> GetAssetByIdAsync(int id);
 
         // Add a new asset to the database0
-        Task<Asset> AddAssetAsync(Asset asset);
+        Task <Asset> AddAssetAsync(AssetCreateDto dto);
 
         // // Update an existing asset
         // Task UpdateAssetAsync(Asset asset);
