@@ -7,9 +7,9 @@ namespace ERP_BACKEND.Controllers;
 [Route("api/[controller]")]
 public class PlacementController : Controller
 {
-    [HttpGet("")]
-    public IEnumerable<WeatherForecast> Get()
-    {
-        return Ok("");
-    }
+    
+    // public IEnumerable<WeatherForecast> Get()
+    // {
+    //     return Ok("");
+    // }
 }

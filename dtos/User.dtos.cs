@@ -9,18 +9,20 @@ public record UserReadDto (
 
 public record UserCreateDto (
     string Username,
-    string PasswordHash,
+    string Password,
     string role 
 );
 
 
 public record Loginrequest (
     string username,
-    string PasswordHash
+    string Password,
+    string role
 );
 
 
 public record Loginresponse(
     string role,
-    string token
+    string token,
+    int tokenExpiryTimeStamp
 );

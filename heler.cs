@@ -1,10 +1,10 @@
 namespace ERP_BACKEND.helper;
+
 using ERP_BACKEND.interfaces;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Security.Cryptography;
 using System.Text;
 
- public class PasswordHasher : IPasswordHasher
+public class PasswordHasher : IPasswordHasher
  {
      public const string AlgoTag = "PBKDF2-SHA256";
      public const int SaltSize = 16;
@@ -17,9 +17,7 @@ using System.Text;
          return $"{AlgoTag}${iterations}${Convert.ToBase64String(salt)}${Convert.ToBase64String(key)}";
      }
 
-     public bool LooksLikeNew(string s) =>
-         !string.IsNullOrEmpty(s) && s.StartsWith($"{AlgoTag}$", StringComparison.Ordinal);
-
+   
      public bool Verify(string taggedHash, string password)
      {
          var parts = taggedHash.Split('$');

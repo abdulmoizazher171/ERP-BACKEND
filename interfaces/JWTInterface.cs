@@ -6,6 +6,6 @@ namespace ERP_BACKEND.interfaces;
 
 public interface IJWTinterface
 {
-    public Task<Loginresponse>Authenticate (Loginrequest data );
+    public Task<Loginresponse?>Authenticate (Loginrequest data );
 }
 

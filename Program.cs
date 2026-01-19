@@ -5,6 +5,7 @@ using ERP_BACKEND.services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using ERP_BACKEND.helper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,10 @@ builder.Services.AddOpenApi();
 
 
 builder.Services.AddScoped<IAsset, AssetService>();
+builder.Services.AddScoped<IUserInterface,UserService>();
+builder.Services.AddScoped<IJWTinterface, JWTservice>();
+builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
+
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 

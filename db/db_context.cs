@@ -59,5 +59,10 @@ public class AppDbContext : DbContext
         .WithMany(p => p.Placements)
         .HasForeignKey(d => d.RackId);
 });
+
+    modelBuilder.Entity<User>()
+        .HasKey(u => u.USER_ID);
+
     }
+    
 }

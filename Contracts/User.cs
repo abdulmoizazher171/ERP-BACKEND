@@ -1,9 +1,9 @@
 namespace ERP_BACKEND.constracts;
 public class User
 {
-    public int UserId { get; set; }
-    public string? Username { get; set; }
-    public string? PasswordHash { get; set; }
-    public string? Role { get; set; }
+    public int USER_ID { get; set; }
+    public string? USERNAME { get; set; }
+    public string? PASSWORD_HASH { get; set; }
+    public string? ROLE { get; set; }
 }
 
