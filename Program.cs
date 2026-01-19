@@ -52,6 +52,16 @@ builder.Services.AddAuthentication(options =>
        
    };
 
+   options.Events = new JwtBearerEvents
+{
+    OnAuthenticationFailed = context =>
+    {
+        // This will print the exact reason to your console
+        Console.WriteLine("Token failed validation: " + context.Exception.Message);
+        return Task.CompletedTask;
+    }
+};
+
 });
 builder.Services.AddAuthorization();
 
@@ -69,8 +79,8 @@ if (!app.Environment.IsDevelopment())
     app.UseHttpsRedirection();
 }
 
-app.UseAuthorization();
-app.UseAuthentication();
+app.UseAuthentication(); // 1. Identify user (Checks the JWT)
+app.UseAuthorization();  // 2. Check permissions (Now knows who you are)
 
 app.MapControllers();
 

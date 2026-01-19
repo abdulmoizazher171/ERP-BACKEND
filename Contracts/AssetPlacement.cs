@@ -5,13 +5,13 @@ namespace ERP_BACKEND.constracts;
         // Since this is a bridge/placement table, you still need a Primary Key
         // even if it's not in your SQL, EF Core requires one. 
         // If your SQL doesn't have an ID, we can use a Composite Key or add an ID.
-        public int AssetPlacementId { get; set; } 
+        public int ASSET_PLACEMENT_ID { get; set; } 
 
-        public int ItemId { get; set; }
-        public int ShelfId { get; set; }
-        public int RackId { get; set; }
-        public DateTime PlacedDate { get; set; }
-        public string PlacedBy { get; set; }
+        public int ITEM_ID { get; set; }
+        public int SHELF_ID { get; set; }
+        public int RACK_ID { get; set; }
+        public DateTime PLACED_DATE { get; set; }
+        public string PLACED_BY { get; set; }
 
         // Navigation Properties
         public virtual Asset Asset { get; set; }

@@ -4,5 +4,5 @@ public class Rack
 {
     public int RackId { get; set; }
     public string? RackNumber { get; set; } // e.g., "R-44"
-    public virtual ICollection<AssetPlacement> Placements { get; set; }
+    public virtual ICollection<AssetPlacement>? AssetPlacements { get; set; }
 }

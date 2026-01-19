@@ -27,7 +27,7 @@ public class AssetService : IAsset
     {
         return await _context.Assets
             .Include(a => a.Attachments)
-            .FirstOrDefaultAsync(a => a.ItemId == id);
+            .FirstOrDefaultAsync(a => a.ITEM_ID == id);
     }
 
     public async Task<Asset> AddAssetAsync(Asset asset)

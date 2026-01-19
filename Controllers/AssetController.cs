@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using ERP_BACKEND.dtos;
 using ERP_BACKEND.interfaces;
 using ERP_BACKEND.constracts;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ERP_BACKEND.Controllers;
 
@@ -9,6 +10,7 @@ namespace ERP_BACKEND.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class AssetsController : Controller
 {
 
