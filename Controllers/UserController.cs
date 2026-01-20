@@ -23,11 +23,6 @@ public class UserController : Controller
       _Iuserinterface = iuserinterface;
     }
 
-    [HttpGet("")]
-    public IEnumerable<WeatherForecast> Get()
-    {
-        return (IEnumerable<WeatherForecast>)Ok("");
-    }
 
     [AllowAnonymous]
     [HttpPost("Login")]

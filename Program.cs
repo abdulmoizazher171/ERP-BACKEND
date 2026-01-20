@@ -22,7 +22,10 @@ builder.Services.AddScoped<IAsset, AssetService>();
 builder.Services.AddScoped<IUserInterface,UserService>();
 builder.Services.AddScoped<IJWTinterface, JWTservice>();
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
-
+builder.Services.AddScoped<IRackService, RackService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<ITurbineService, TurbineService>();
+builder.Services.AddScoped<IStoreService, StoreService>();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 

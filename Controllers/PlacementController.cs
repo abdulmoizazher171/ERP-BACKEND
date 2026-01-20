@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 namespace ERP_BACKEND.Controllers;
 
@@ -5,11 +6,12 @@ namespace ERP_BACKEND.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class PlacementController : Controller
 {
-    
-    // public IEnumerable<WeatherForecast> Get()
-    // {
-    //     return Ok("");
-    // }
+    [HttpGet("all")]
+    public IEnumerable<WeatherForecast> Get()
+    {
+        return (IEnumerable<WeatherForecast>)Ok("");
+    }
 }

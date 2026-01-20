@@ -14,6 +14,12 @@ public class AppDbContext : DbContext
     public DbSet<Attachment> Attachments { get; set; }
     public DbSet<User> Users { get; set; }
 
+    public DbSet<Rack> Racks {get; set;}
+
+    public DbSet<Shelf> Shelves {get; set;}
+
+    public DbSet<AssetPlacement> AssetPlacements {get; set;}
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         // Fluent API: Explicitly defining the relationships
