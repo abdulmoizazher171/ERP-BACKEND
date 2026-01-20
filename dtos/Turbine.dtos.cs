@@ -1,7 +1,14 @@
 namespace ERP_BACKEND.dtos;
 
-public record TurbineDto
+public record readTurbineDto
 (
     int TurbineId,
+    int SystemNumber
+);
+
+
+public record createTurbineDto
+(
+   
     int SystemNumber
 );

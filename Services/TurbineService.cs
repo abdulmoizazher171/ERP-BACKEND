@@ -15,22 +15,22 @@ public class TurbineService : ITurbineService
         _context = context;
     }
 
-    public async Task<IEnumerable<TurbineDto>> GetAllTurbinesAsync()
+    public async Task<IEnumerable<readTurbineDto>> GetAllTurbinesAsync()
     {
         return await _context.Turbines
-            .Select(t => new TurbineDto(t.TURBINE_ID, t.SYSTEM_NUMBER))
+            .Select(t => new readTurbineDto(t.TURBINE_ID, t.SYSTEM_NUMBER))
             .ToListAsync();
     }
 
-    public async Task<TurbineDto?> GetTurbineByIdAsync(int id)
+    public async Task<readTurbineDto?> GetTurbineByIdAsync(int id)
     {
         var turbine = await _context.Turbines.FindAsync(id);
         if (turbine == null) return null;
 
-        return new TurbineDto(turbine.TURBINE_ID, turbine.SYSTEM_NUMBER);
+        return new readTurbineDto(turbine.TURBINE_ID, turbine.SYSTEM_NUMBER);
     }
 
-    public async Task<TurbineDto> CreateTurbineAsync(TurbineDto turbineDto)
+    public async Task<readTurbineDto> CreateTurbineAsync(createTurbineDto turbineDto)
     {
         var turbine = new Turbine
         {
@@ -40,10 +40,10 @@ public class TurbineService : ITurbineService
         _context.Turbines.Add(turbine);
         await _context.SaveChangesAsync();
 
-        return new TurbineDto(turbine.TURBINE_ID, turbine.SYSTEM_NUMBER);
+        return new readTurbineDto(turbine.TURBINE_ID, turbine.SYSTEM_NUMBER);
     }
 
-    public async Task<bool> UpdateTurbineAsync(int id, TurbineDto turbineDto)
+    public async Task<bool> UpdateTurbineAsync(int id, createTurbineDto turbineDto)
     {
         var turbine = await _context.Turbines.FindAsync(id);
         if (turbine == null) return false;

@@ -11,7 +11,7 @@ namespace ERP_BACKEND.constracts;
         public int SHELF_ID { get; set; }
         public int RACK_ID { get; set; }
         public DateTime PLACED_DATE { get; set; }
-        public string PLACED_BY { get; set; }
+        public string PLACED_BY { get; set; } = string.Empty;
 
         // Navigation Properties
         public virtual Asset Asset { get; set; }

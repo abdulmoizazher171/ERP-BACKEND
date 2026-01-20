@@ -19,27 +19,27 @@ public class CategoryController : Controller
     }
 
     [HttpGet("all")]
-    public async Task<ActionResult<IEnumerable<CategoryDto>>> GetCategories()
+    public async Task<ActionResult<IEnumerable<readCategoryDto>>> GetCategories()
     {
         return Ok(await _categoryService.GetAllCategoriesAsync());
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<CategoryDto>> GetCategory(int id)
+    public async Task<ActionResult<readCategoryDto>> GetCategory(int id)
     {
         var category = await _categoryService.GetCategoryByIdAsync(id);
         return category == null ? NotFound() : Ok(category);
     }
 
     [HttpPost]
-    public async Task<ActionResult<CategoryDto>> PostCategory(CategoryDto categoryDto)
+    public async Task<ActionResult<readCategoryDto>> PostCategory(createCategoryDto categoryDto)
     {
         var createdCategory = await _categoryService.CreateCategoryAsync(categoryDto);
         return CreatedAtAction(nameof(GetCategory), new { id = createdCategory.CategoryId }, createdCategory);
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> PutCategory(int id, CategoryDto categoryDto)
+    public async Task<IActionResult> PutCategory(int id, createCategoryDto categoryDto)
     {
         var result = await _categoryService.UpdateCategoryAsync(id, categoryDto);
         return result ? NoContent() : NotFound();

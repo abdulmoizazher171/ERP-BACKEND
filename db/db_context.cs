@@ -8,17 +8,17 @@ public class AppDbContext : DbContext
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
     public DbSet<Asset> Assets { get; set; }
-    public DbSet<Category> Categories { get; set; }
+    public DbSet<Category> Category { get; set; }
     public DbSet<Turbine> Turbines { get; set; }
-    public DbSet<Store> Stores { get; set; }
+    public DbSet<Store> Store { get; set; }
     public DbSet<Attachment> Attachments { get; set; }
     public DbSet<User> Users { get; set; }
 
-    public DbSet<Rack> Racks {get; set;}
+    public DbSet<Rack> Rack {get; set;}
 
-    public DbSet<Shelf> Shelves {get; set;}
+    public DbSet<Shelf> Shelf {get; set;}
 
-    public DbSet<AssetPlacement> AssetPlacements {get; set;}
+    public DbSet<AssetPlacement> Asset_Placement {get; set;}
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -92,7 +92,7 @@ public class AppDbContext : DbContext
     
     
     modelBuilder.Entity<Rack>()
-    .HasKey(r=>r.RackId);
+    .HasKey(r=>r.RACK_ID);
     
     
     

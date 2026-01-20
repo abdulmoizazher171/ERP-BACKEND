@@ -15,38 +15,38 @@ public class RackService : IRackService
         _context = context;
     }
 
-    public async Task<IEnumerable<RackDto>> GetAllRacksAsync()
+    public async Task<IEnumerable<readRackDto>> GetAllRacksAsync()
     {
-        return await _context.Racks
-            .Select(r => new RackDto(r.RackId, r.RackNumber))
+        return await _context.Rack
+            .Select(r => new readRackDto(r.RACK_ID, r.RACK_NUMBER))
             .ToListAsync();
     }
 
-    public async Task<RackDto?> GetRackByIdAsync(int id)
+    public async Task<readRackDto?> GetRackByIdAsync(int id)
     {
-        var rack = await _context.Racks.FindAsync(id);
-        return rack == null ? null : new RackDto(rack.RackId, rack.RackNumber);
+        var rack = await _context.Rack.FindAsync(id);
+        return rack == null ? null : new readRackDto(rack.RACK_ID, rack.RACK_NUMBER);
     }
 
-    public async Task<RackDto> CreateRackAsync(RackDto rackDto)
+    public async Task<readRackDto> CreateRackAsync(createRackDto rackDto)
     {
         var rack = new Rack
         {
-            RackNumber = rackDto.RackNumber
+            RACK_NUMBER = rackDto.RackNumber
         };
 
-        _context.Racks.Add(rack);
+        _context.Rack.Add(rack);
         await _context.SaveChangesAsync();
 
-        return new RackDto(rack.RackId, rack.RackNumber);
+        return new readRackDto(rack.RACK_ID, rack.RACK_NUMBER);
     }
 
-    public async Task<bool> UpdateRackAsync(int id, RackDto rackDto)
+    public async Task<bool> UpdateRackAsync(int id, createRackDto rackDto)
     {
-        var rack = await _context.Racks.FindAsync(id);
+        var rack = await _context.Rack.FindAsync(id);
         if (rack == null) return false;
 
-        rack.RackNumber = rackDto.RackNumber;
+        rack.RACK_NUMBER = rackDto.RackNumber;
         
         await _context.SaveChangesAsync();
         return true;
@@ -54,10 +54,10 @@ public class RackService : IRackService
 
     public async Task<bool> DeleteRackAsync(int id)
     {
-        var rack = await _context.Racks.FindAsync(id);
+        var rack = await _context.Rack.FindAsync(id);
         if (rack == null) return false;
 
-        _context.Racks.Remove(rack);
+        _context.Rack.Remove(rack);
         await _context.SaveChangesAsync();
         return true;
     }

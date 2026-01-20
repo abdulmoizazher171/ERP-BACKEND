@@ -18,13 +18,13 @@ public class TurbinesController : ControllerBase
     }
 
     [HttpGet("all")]
-    public async Task<ActionResult<IEnumerable<TurbineDto>>> GetTurbines()
+    public async Task<ActionResult<IEnumerable<readTurbineDto>>> GetTurbines()
     {
         return Ok(await _turbineService.GetAllTurbinesAsync());
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<TurbineDto>> GetTurbine(int id)
+    public async Task<ActionResult<readTurbineDto>> GetTurbine(int id)
     {
         var turbine = await _turbineService.GetTurbineByIdAsync(id);
         if (turbine == null) return NotFound();
@@ -32,14 +32,14 @@ public class TurbinesController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<TurbineDto>> PostTurbine(TurbineDto turbineDto)
+    public async Task<ActionResult<readTurbineDto>> PostTurbine(createTurbineDto turbineDto)
     {
         var created = await _turbineService.CreateTurbineAsync(turbineDto);
         return CreatedAtAction(nameof(GetTurbine), new { id = created.TurbineId }, created);
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> PutTurbine(int id, TurbineDto turbineDto)
+    public async Task<IActionResult> PutTurbine(int id, createTurbineDto turbineDto)
     {
         var success = await _turbineService.UpdateTurbineAsync(id, turbineDto);
         if (!success) return NotFound();

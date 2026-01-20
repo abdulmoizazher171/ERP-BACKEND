@@ -15,37 +15,37 @@ public class StoreService : IStoreService
         _context = context;
     }
 
-    public async Task<IEnumerable<StoreDto>> GetAllStoresAsync()
+    public async Task<IEnumerable<readStoreDto>> GetAllStoresAsync()
     {
-        return await _context.Stores
-            .Select(s => new StoreDto(s.STORE_ID, s.STORE_NAME))
+        return await _context.Store
+            .Select(s => new readStoreDto(s.STORE_ID, s.STORE_NAME))
             .ToListAsync();
     }
 
-    public async Task<StoreDto?> GetStoreByIdAsync(int id)
+    public async Task<readStoreDto?> GetStoreByIdAsync(int id)
     {
-        var store = await _context.Stores.FindAsync(id);
+        var store = await _context.Store.FindAsync(id);
         if (store == null) return null;
 
-        return new StoreDto(store.STORE_ID, store.STORE_NAME);
+        return new readStoreDto(store.STORE_ID, store.STORE_NAME);
     }
 
-    public async Task<StoreDto> CreateStoreAsync(StoreDto storeDto)
+    public async Task<readStoreDto> CreateStoreAsync(createStoreDto storeDto)
     {
         var store = new Store
         {
             STORE_NAME = storeDto.StoreName
         };
 
-        _context.Stores.Add(store);
+        _context.Store.Add(store);
         await _context.SaveChangesAsync();
 
-        return new StoreDto(store.STORE_ID, store.STORE_NAME);
+        return new readStoreDto(store.STORE_ID, store.STORE_NAME);
     }
 
-    public async Task<bool> UpdateStoreAsync(int id, StoreDto storeDto)
+    public async Task<bool> UpdateStoreAsync(int id, createStoreDto storeDto)
     {
-        var store = await _context.Stores.FindAsync(id);
+        var store = await _context.Store.FindAsync(id);
         if (store == null) return false;
 
         store.STORE_NAME = storeDto.StoreName;
@@ -57,10 +57,10 @@ public class StoreService : IStoreService
 
     public async Task<bool> DeleteStoreAsync(int id)
     {
-        var store = await _context.Stores.FindAsync(id);
+        var store = await _context.Store.FindAsync(id);
         if (store == null) return false;
 
-        _context.Stores.Remove(store);
+        _context.Store.Remove(store);
         await _context.SaveChangesAsync();
         return true;
     }

@@ -18,14 +18,14 @@ public class RacksController : ControllerBase
     }
 
     [HttpGet("all")]
-    public async Task<ActionResult<IEnumerable<RackDto>>> GetRacks()
+    public async Task<ActionResult<IEnumerable<readRackDto>>> GetRacks()
     {
         var racks = await _rackService.GetAllRacksAsync();
         return Ok(racks);
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<RackDto>> GetRack(int id)
+    public async Task<ActionResult<readRackDto>> GetRack(int id)
     {
         var rack = await _rackService.GetRackByIdAsync(id);
         if (rack == null) return NotFound();
@@ -33,14 +33,14 @@ public class RacksController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<RackDto>> PostRack(RackDto rackDto)
+    public async Task<ActionResult<readRackDto>> PostRack(createRackDto rackDto)
     {
         var createdRack = await _rackService.CreateRackAsync(rackDto);
         return CreatedAtAction(nameof(GetRack), new { id = createdRack.RackId }, createdRack);
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> PutRack(int id, RackDto rackDto)
+    public async Task<IActionResult> PutRack(int id, createRackDto rackDto)
     {
         var success = await _rackService.UpdateRackAsync(id, rackDto);
         if (!success) return NotFound();

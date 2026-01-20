@@ -18,13 +18,13 @@ public class StoresController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<StoreDto>>> GetStores()
+    public async Task<ActionResult<IEnumerable<readStoreDto>>> GetStores()
     {
         return Ok(await _storeService.GetAllStoresAsync());
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<StoreDto>> GetStore(int id)
+    public async Task<ActionResult<readStoreDto>> GetStore(int id)
     {
         var store = await _storeService.GetStoreByIdAsync(id);
         if (store == null) return NotFound();
@@ -32,14 +32,14 @@ public class StoresController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<StoreDto>> PostStore(StoreDto storeDto)
+    public async Task<ActionResult<readStoreDto>> PostStore(createStoreDto storeDto)
     {
         var createdStore = await _storeService.CreateStoreAsync(storeDto);
         return CreatedAtAction(nameof(GetStore), new { id = createdStore.StoreId }, createdStore);
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> PutStore(int id, StoreDto storeDto)
+    public async Task<IActionResult> PutStore(int id, createStoreDto storeDto)
     {
         var success = await _storeService.UpdateStoreAsync(id, storeDto);
         if (!success) return NotFound();

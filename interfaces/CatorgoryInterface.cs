@@ -1,9 +1,9 @@
 using  ERP_BACKEND.dtos;
 public interface ICategoryService
 {
-    Task<IEnumerable<CategoryDto>> GetAllCategoriesAsync();
-    Task<CategoryDto?> GetCategoryByIdAsync(int id);
-    Task<CategoryDto> CreateCategoryAsync(CategoryDto categoryDto);
-    Task<bool> UpdateCategoryAsync(int id, CategoryDto categoryDto);
+    Task<IEnumerable<readCategoryDto>> GetAllCategoriesAsync();
+    Task<readCategoryDto?> GetCategoryByIdAsync(int id);
+    Task<readCategoryDto> CreateCategoryAsync(createCategoryDto categoryDto);
+    Task<bool> UpdateCategoryAsync(int id, createCategoryDto categoryDto);
     Task<bool> DeleteCategoryAsync(int id);
 }
