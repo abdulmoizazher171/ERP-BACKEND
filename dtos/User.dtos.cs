@@ -16,8 +16,8 @@ public record UserCreateDto (
 
 public record Loginrequest (
     string username,
-    string Password,
-    string role
+    string Password
+   
 );
 
 

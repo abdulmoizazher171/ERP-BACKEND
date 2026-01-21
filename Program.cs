@@ -118,7 +118,22 @@ builder.Services.AddAuthentication(options =>
 });
 builder.Services.AddAuthorization();
 
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:3000", "http://localhost:5173") // Add your frontend URLs
+                  .AllowAnyHeader()
+                  .AllowAnyMethod()
+                  .AllowCredentials(); // Required if you are sending cookies/auth headers
+        });
+});
+
+
 var app = builder.Build();
+
 
 
 // Configure the HTTP request pipeline.
@@ -144,6 +159,8 @@ if (!app.Environment.IsDevelopment())
     app.UseHttpsRedirection();
     
 }
+
+app.UseCors("AllowFrontend");
 
 app.UseAuthentication(); // 1. Identify user (Checks the JWT)
 app.UseAuthorization();  // 2. Check permissions (Now knows who you are)
