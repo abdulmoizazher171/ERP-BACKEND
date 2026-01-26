@@ -24,7 +24,7 @@ public class AssetService : IAsset
             a.ITEM_ID,
             a.ITEM_NAME,
             a.Category != null ? a.Category.CATEGORY_NAME : "No Category",
-            a.Turbine != null ? a.Turbine.SYSTEM_NUMBER: "",
+            a.Turbine != null ? a.Turbine.SYSTEM_NUMBER: " No System Number",
             
             new List<string>() // Handle attachments logic here
         ))

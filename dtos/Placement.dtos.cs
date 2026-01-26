@@ -10,7 +10,8 @@ public record PlacementReadDto
     string PlacedBy,
     DateTime? WithdrawalDate,
     string WithdrawalBy,
-    string Location
+    string Location,
+    int Quantity
 );
 
 public record PlacementCreateDto 
@@ -18,8 +19,12 @@ public record PlacementCreateDto
     int ItemId,
     int ShelfId,
     int RackId,
+    int TurbineId,
     string PlacedBy,
-    string Location
+    string Location,
+    int CategoryId,
+    int amount,
+    DateTime placedDate
 
 
 );
@@ -32,7 +37,8 @@ public record PlacementModifyDto
     string PlacedBy,
     string WithdrawalBy,
     DateTime WithdrawalDate,
-    string Location
+    string Location,
+    int Quantity
 
 
 );

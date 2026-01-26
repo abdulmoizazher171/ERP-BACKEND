@@ -41,7 +41,7 @@ public class PlacementService : IPlacementService
              List<PlacementMapper> assetPlacements = new List<PlacementMapper>();
         await _context.Asset_Placement.ToListAsync();
         assetPlacements = await _context.Asset_Placement 
-        .Include(p=> p.Asset).Include(p=>p.Rack).Include(p=>p.Shelf)
+        .Include(p=> p.Asset).Include(p=>p.Rack).Include(p=>p.Shelf).Include(p=>p.Asset.Turbine).Include(p=>p.Asset.Category)
         .ProjectTo<PlacementMapper>(_mapper.ConfigurationProvider)
         .ToListAsync();
         return assetPlacements;
@@ -62,7 +62,8 @@ public class PlacementService : IPlacementService
             p.PLACED_BY,
             p.WITHDRAWAL_DATE,
             p.WITHDRAWN_BY ?? "",
-            p.LOCATION
+            p.LOCATION,
+            p.QUANTITY
 
         );
         
@@ -105,7 +106,8 @@ public class PlacementService : IPlacementService
             placement.PLACED_BY,
             placement.WITHDRAWAL_DATE,
             placement.WITHDRAWN_BY,
-            placement.LOCATION
+            placement.LOCATION,
+            placement.QUANTITY
         );
     }
 

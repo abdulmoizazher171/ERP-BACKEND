@@ -19,9 +19,20 @@ public class MappingProfile : Profile
             // Map the Person
             .ForMember(dest => dest.PlacedBy, opt => opt.MapFrom(src => src.PLACED_BY))
 
-            .ForMember(dest => dest.PlacedBy, opt => opt.MapFrom(src => src.WITHDRAWN_BY))
+            .ForMember(dest => dest.WithdrawnBy, opt => opt.MapFrom(src => src.WITHDRAWN_BY))
 
-            .ForMember(dest => dest.PlacedBy, opt => opt.MapFrom(src => src.WITHDRAWAL_DATE))
+            .ForMember(dest => dest.WithdrawalDate, opt => opt.MapFrom(src => src.WITHDRAWAL_DATE))
+
+            .ForMember(dest => dest.Location, opt => opt.MapFrom(src => src.LOCATION))
+
+
+
+
+            .ForMember(dest => dest.Quantity, opt => opt.MapFrom(src => src.QUANTITY))
+
+            .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Asset.Category.CATEGORY_NAME))
+
+            .ForMember(dest => dest.SystemNumber, opt => opt.MapFrom(src => src.Asset.Turbine.SYSTEM_NUMBER))
             
             
             .ForMember(dest => dest.ItemName, opt => opt.MapFrom(src => src.Asset.ITEM_NAME))

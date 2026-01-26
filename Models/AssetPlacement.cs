@@ -11,12 +11,12 @@ namespace ERP_BACKEND.constracts;
         public int SHELF_ID { get; set; }
         public int RACK_ID { get; set; }
         public DateTime PLACED_DATE { get; set; }
-        public string? PLACED_BY { get; set; } 
+        public string PLACED_BY { get; set; } = string.Empty;
         public DateTime? WITHDRAWAL_DATE { get; set; }
         public string? WITHDRAWN_BY { get; set; } 
         public string LOCATION { get; set; } = string.Empty;
 
-
+        public int QUANTITY { get; set; }
         // Navigation Properties
         public virtual Asset Asset { get; set; }
         public virtual Shelf Shelf { get; set; }
