@@ -34,7 +34,7 @@ public class ShelfService : IShelfService
     {
         var Shelf = new Shelf
         {
-            SHELF_NAME = ShelfDto.ShelfName
+            SHELF_NAME = ShelfDto.shelfName
         };
 
         _context.Shelf.Add(Shelf);
@@ -48,7 +48,7 @@ public class ShelfService : IShelfService
         var Shelf = await _context.Shelf.FindAsync(id);
         if (Shelf == null) return false;
 
-        Shelf.SHELF_NAME = ShelfDto.ShelfName;
+        Shelf.SHELF_NAME = ShelfDto.shelfName;
 
         _context.Entry(Shelf).State = EntityState.Modified;
         await _context.SaveChangesAsync();

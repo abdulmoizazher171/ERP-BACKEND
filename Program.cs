@@ -75,9 +75,10 @@ builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 builder.Services.AddScoped<IRackService, RackService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<ITurbineService, TurbineService>();
-builder.Services.AddScoped<IStoreService, StoreService>();
+builder.Services.AddScoped<IShelfService, ShelfService>();
 // Register the Placement Service
 builder.Services.AddScoped<IPlacementService, PlacementService>();
+builder.Services.AddScoped<IAttachment, AttachmentService>();
 // This looks at the assembly where MappingProfile lives
 
 // Use this specific syntax
@@ -176,7 +177,7 @@ app.UseCors("AllowFrontend");
 
 app.UseAuthentication(); // 1. Identify user (Checks the JWT)
 app.UseAuthorization();  // 2. Check permissions (Now knows who you are)
-
+app.UseStaticFiles(); // This allows the browser to access files in wwwroot
 app.MapControllers();
 
 app.Run();

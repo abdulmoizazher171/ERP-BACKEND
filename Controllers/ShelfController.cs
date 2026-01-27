@@ -32,10 +32,15 @@ public class ShelfsController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<readShelfDto>> PostShelf(createShelfDto ShelfDto)
+    public async Task<ActionResult<readShelfDto>> PostShelf([FromBody] createShelfDto ShelfDto)
     {
-        var createdShelf = await _ShelfService.CreateShelfAsync(ShelfDto);
-        return CreatedAtAction(nameof(GetShelf), new { id = createdShelf.Shelf_Id }, createdShelf);
+        if (ShelfDto == null || string.IsNullOrEmpty(ShelfDto.shelfName))
+    {
+        return BadRequest("Invalid shelf data. shelfName is required.");
+    }
+
+    var createdShelf = await _ShelfService.CreateShelfAsync(ShelfDto);
+    return CreatedAtAction(nameof(GetShelf), new { id = createdShelf.Shelf_Id }, createdShelf);
     }
 
     [HttpPut("{id}")]

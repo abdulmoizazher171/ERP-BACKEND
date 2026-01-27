@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace ERP_BACKEND.dtos;
 
 public record readShelfDto
@@ -8,6 +10,6 @@ public record readShelfDto
 
 public record createShelfDto
 (
-  
-    string? ShelfName
+    [Required]
+    string shelfName
 );
